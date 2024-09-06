@@ -9,14 +9,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { Loader, LogOut } from "lucide-react";
-import { useCurrentUser } from "../hooks/use-current-user";
+import { useCurrentUser } from "../api/use-current-user";
 
 export const UserButton = () => {
   const { signOut } = useAuthActions();
   const { data, isLoading } = useCurrentUser();
 
   if (isLoading) {
-    return <Loader className="size-4 animate-spin text-muted-foreground" />;
+    return (
+      <div className="size-10 flex items-center justify-center border rounded-full bg-slate-100">
+        <Loader className="size-4 animate-spin text-muted-foreground" />
+      </div>
+    );
   }
 
   if (!data) return null;
